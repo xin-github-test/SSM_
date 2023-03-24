@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+<!--扫描组件  扫描哪些类用了注解-->
+<!--  use-default-filters属性默认值为 true:指的是扫描给定包下的所有类，设置为false时：不扫描指定包下的类  -->
+    <context:component-scan base-package="com.atguigu.spring">
+<!--        使用<context:exclude-filter 将某个文件排除在外（不扫描）
+            type:排除策略,常用取值如下：
+            annotation:按注解排除，带有该注解的全部不扫描
+            assignable:按类类型排除，将某个类排除在外
+            -->
+<!--        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+<!--        <context:exclude-filter type="assignable" expression="com.atguigu.spring.controller.UserController"/>-->
+
+<!--  context:include-filter 包含标签：额外扫描一个文件     -->
+<!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+    </context:component-scan>
+
+</beans>

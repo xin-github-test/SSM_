@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--其中autowire的  no 以及 default 均为不自动装配-->
+    <bean id="userController" class="com.atguigu.spring.controller.UserController" autowire="byType">
+<!--        为类类型或接口类型设置自动装配-->
+<!--        <property name="userService" ref="userService"></property>-->
+    </bean>
+
+    <bean id="userService" class="com.atguigu.spring.service.impl.UserServiceImpl" autowire="byType">
+<!--        <property name="userDao" ref="userDao"></property>-->
+    </bean>
+
+    <bean id="userDao" class="com.atguigu.spring.dao.impl.UserDaoImpl"></bean>
+
+</beans>

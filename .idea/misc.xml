@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_parameter/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_resultMap/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_dynamicSQL/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_cache/pom.xml" />
+        <option value="$PROJECT_DIR$/mybatis_mbg/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_helloworld/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_ioc_xml/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_ioc_annotation/spring_ioc_annotation/pom.xml" />
+        <option value="$PROJECT_DIR$/spring_ioc_annotation/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-proxy/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-aop/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="studentOne" class="com.atguigu.spring.pojo.Student">
+<!--        依赖注入：set注入
+            property:通过成员变量的set方法进行赋值
+            name:设置需要赋值的属性名（set方法去掉set后将首字母变小写则为属性名）
+            value:设置为属性所赋的值-->
+        <property name="sid" value="1001"></property>
+        <property name="sname" value="张三"></property>
+        <property name="age" value="23"></property>
+        <property name="gender" value="男"></property>
+    </bean>
+
+    <bean id="studentThree" class="com.atguigu.spring.pojo.Student">
+<!--        可以直接通过有参构造进行赋值，按参数的顺序-->
+        <constructor-arg value="1002"></constructor-arg>
+        <constructor-arg value="李四"></constructor-arg>
+        <constructor-arg value="女"></constructor-arg>
+        <constructor-arg value="24" name="age"></constructor-arg>
+    </bean>
+    <bean id="studentFour" class="com.atguigu.spring.pojo.Student">
+        <!--        可以直接通过有参构造进行赋值，按参数的顺序-->
+        <property name = "sid" value="1002"></property>
+        <property name = "sname" >
+            <value><![CDATA[<王五>]]></value>
+        </property>
+<!--        要给成员变量赋值为null的话，不能直接使用value,需要使用null标签-->
+<!--        <property name = "gender" value="null"></property>-->
+        <property name = "gender" >
+            <null></null>
+        </property>
+
+    </bean>
+
+    <bean id="clazzOne" class="com.atguigu.spring.pojo.Clazz">
+        <property name="cid" value="1111"></property>
+        <property name="cname" value="最强王者班"></property>
+        <property name="students" ref="studentList"></property>
+<!--        给list类型进行赋值-->
+<!--        <property name="students">-->
+<!--            <list>-->
+<!--                <ref bean="studentOne"></ref>-->
+<!--                <ref bean="studentFour"></ref>-->
+<!--                <ref bean="studentFive"></ref>-->
+<!--            </list>-->
+<!--        </property>-->
+    </bean>
+
+<!--    如何配置一个集合类型的bean,需要使用util的约束-->
+    <util:list id="studentList">
+        <ref bean="studentOne"></ref>
+        <ref bean="studentFour"></ref>
+        <ref bean="studentFive"></ref>
+    </util:list>
+
+    <util:map id="teacherMap">
+        <entry key="10086" value-ref="teacherOne"></entry>
+        <entry key="10010" value-ref="teacherTwo"></entry>
+    </util:map>
+
+
+    <bean id="studentFive" class="com.atguigu.spring.pojo.Student">
+        <property name="sid" value="1004"></property>
+        <property name="sname" value="赵六"></property>
+        <property name="age" value="26"></property>
+        <property name="gender" value="男"></property>
+<!--        1.ref：引用IOC容器中的某个bean的id-->
+<!--        <property name="clazz" ref="clazzOne"></property>-->
+
+<!--        2.级联的方式：要保证提前为clazz属性赋值或者实例化-->
+<!--        <property name="clazz.cid" value="2222"></property>-->
+<!--        <property name="clazz.cname" value="远大前程班"></property>-->
+
+<!--        3.使用内部bean的方式，但是内部bean不能被外部获取，只在内部生效-->
+        <property name="clazz">
+            <bean id="clazzInner" class="com.atguigu.spring.pojo.Clazz">
+                <property name="cid" value="2222"></property>
+                <property name="cname" value="远大前程班"></property>
+            </bean>
+        </property>
+        <property name="hobby">
+<!--            数组类型的赋值
+            若是数组的类型为类类型，则使用<ref bean="beanid">进行赋值-->
+            <array>
+                <value>抽烟</value>
+                <value>喝酒</value>
+                <value>烫头</value>
+            </array>
+        </property>
+        <!--<property name="teacherMap">
+            <map>
+                <entry key="10086" value-ref="teacherOne"></entry>
+                <entry key="10010" value-ref="teacherTwo"></entry>
+            </map>
+        </property>-->
+        <property name="teacherMap" ref="teacherMap"></property>
+
+    </bean>
+
+    <bean id="teacherOne" class="com.atguigu.spring.pojo.Teacher">
+        <property name="tid" value="10086"></property>
+        <property name="tname" value="大宝"></property>
+    </bean>
+    <bean id="teacherTwo" class="com.atguigu.spring.pojo.Teacher">
+        <property name="tid" value="10010"></property>
+        <property name="tname" value="小宝"></property>
+    </bean>
+
+
+    <bean id="studentSix" class="com.atguigu.spring.pojo.Student"
+          p:sid="1005" p:sname="小明" p:teacherMap-ref="teacherMap"></bean>
+</beans>

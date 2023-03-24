@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 当前配置文件专用展示面向接口的操作方式 -->
+
+<mapper namespace="atguigu.mybatis.mapper.UserMapper">
+    <!-- int inserUser();   id 与接口中的方法名对应-->
+    <insert id="inserUser">
+        insert into t_user values(null,'admin','123456',23,'女','12345@qq.com')
+    </insert>
+
+<!--    void updateUser();-->
+    <update id="updateUser">
+        update t_user set username='root',password='123' where id = 2
+    </update>
+
+<!--    void deleteUser()-->
+    <delete id="deleteUser">
+        delete from t_user where id = 3
+    </delete>
+<!--    User getUserById();
+        resultType: 设置结果类型，即查询的数据要转换为的java类型
+        resultMap: 自定义映射，处理多对一或一对多-->
+    <select id="getUserById" resultType="atguigu.mybatis.pojo.User" >
+        select * from t_user where id = 2
+    </select>
+
+<!--    List<User> getAllUser();  由于在mybatis的配置文件中设置了类型别名，因此可以用 abc 代替 atguigu.mybatis.pojo.User-->
+    <select id="getAllUser" resultType="atguigu.mybatis.pojo.User">
+        select * from t_user
+    </select>
+</mapper>

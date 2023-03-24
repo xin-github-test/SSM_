@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atguigu.mybatis.mapper.SpecialSQLMapper">
+
+<!--    List<User> getUserByLike(@Param("mohu") String mohu); -->
+<!--    由于在单引号中无法解析，因此无法使用#{}，此时有三种解决方式-->
+<!--    第一种:使用${}-->
+<!--    <select id="getUserByLike" resultType="User">-->
+<!--        select * from t_user where username like '%${mohu}%'-->
+<!--    </select>-->
+
+<!--    第二种:使用concat()字符拼接函数-->
+<!--    <select id="getUserByLike" resultType="User">-->
+<!--        select * from t_user where username like concat('%',#{mohu},'%')-->
+<!--    </select>-->
+
+<!--    第三种(使用最多的方式):使用双引号将百分号隔开-->
+    <select id="getUserByLike" resultType="User">
+        select * from t_user where username like "%"#{mohu}"%"
+    </select>
+
+<!--    void deleteMoreUser(@Param("ids") String ids); //ids (2,6)只能使用${}-->
+    <delete id="deleteMoreUser">
+        delete from t_user where id in(${ids})
+    </delete>
+
+<!--    List<User> getUserList(@Param("tableName") String tableName); 表名不能有单引号,因此使用${}-->
+    <select id="getUserList" resultType="User">
+        select * from ${tableName}
+    </select>
+
+<!--    void insertUser(User user);
+useGeneratedKeys:表示添加功能,使用自增的主键
+keyProperty:将添加的数据的自增主键为实体类的参数的属性赋值-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user values(null,#{username},#{password},#{age},#{gender},#{email})
+    </insert>
+</mapper>

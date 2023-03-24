@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    scope:设置bean的作用域,控制bean为单例（默认）或是多例-->
+    <bean id="student" class="com.atguigu.spring.pojo.Student" scope="prototype">
+        <property name="sid" value="1001"></property>
+        <property name="sname" value="张三"></property>
+    </bean>
+</beans>

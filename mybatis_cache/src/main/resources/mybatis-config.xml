@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <properties resource="jdbc.properties"/>
+
+<!--    全局设置-->
+    <settings>
+<!--        将表中的下划线映射为驼峰形式   默认是不开启的
+            注意:不能随意的映射,只能按下列形式映射:
+            emp_id : empId   emp_name : empName-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+<!--        开启延迟加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+<!--        按需加载-->
+        <setting name="aggressiveLazyLoading" value="true"/>
+    </settings>
+
+    <typeAliases>
+<!--        <typeAlias type="com.atguigu.mybatis.pojo.Emp"></typeAlias>-->
+        <package name="com.atguigu.mybatis.pojo"/>
+
+    </typeAliases>
+
+
+    <environments default="development">
+
+        <environment id="development">
+
+            <transactionManager type="JDBC"/>
+
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+
+    <mappers>
+<!--        <mapper resource="com/atguigu/mybatis/mapper/CacheMapper.xml"></mapper>-->
+        <package name="com/atguigu/mybatis/mapper"/>
+
+    </mappers>
+</configuration>
