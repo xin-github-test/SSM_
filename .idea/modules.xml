@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/mybatis_resultMap/mybatis_resultMap.iml" filepath="$PROJECT_DIR$/mybatis_resultMap/mybatis_resultMap.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-aop.iml" filepath="$PROJECT_DIR$/spring-aop.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-proxy.iml" filepath="$PROJECT_DIR$/spring-proxy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-transaction.iml" filepath="$PROJECT_DIR$/spring-transaction.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring_helloworld/spring_helloworld.iml" filepath="$PROJECT_DIR$/spring_helloworld/spring_helloworld.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring_ioc_annotation.iml" filepath="$PROJECT_DIR$/spring_ioc_annotation.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring_ioc_xml/spring_ioc_xml.iml" filepath="$PROJECT_DIR$/spring_ioc_xml/spring_ioc_xml.iml" />
