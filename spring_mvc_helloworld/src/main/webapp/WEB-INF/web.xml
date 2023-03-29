@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+<!--
+        springMVC的配置文件的默认位置和名称：
+            位置：WEN-INF 下
+            名称：<servlet-name>名称的值-servlet.xml
+            例如 ：SpringMVC-servlet.xml
+
+-->
+<!--    配置SpringMVC的前端控制器DispatcherServlet-->
+    <servlet>
+        <servlet-name>SpringMVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+<!--        定义服务器初始化参数，设置springMVC配置文件的位置和名称-->
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc.xml</param-value>
+        </init-param>
+<!--        默认是在第一次访问的时候初始化，为了避免等待时间过长，可以将其提前到服务器初始化的时候-->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SpringMVC</servlet-name>
+<!--        一般都写 / 不写 /*
+            原因：/* ：包括.jsp在内的所有请求，但是 tomcat的配置文件中已经配置了处理.jsp页面的控制器，所以这里
+                    的控制器不能处理.jsp页面
+                 /  ：不包括.jsp的所有请求
+                 -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
