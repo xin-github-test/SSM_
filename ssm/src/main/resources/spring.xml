@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+<!--扫描组件(除控制层)-->
+    <context:component-scan base-package="com.atguigu.ssm">
+       <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+<!--引入properties文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+<!--    配置数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+<!--    配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+<!--    开启事务的注解驱动
+        将使用@Transactional标识的方法或类中所有的方法进行事务管理-->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+
+
+
+<!--    配置sqlSessionFactoryBean,可以直接在Spring的IOC中获取SqlSessionFactory-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+        <property name="dataSource" ref="dataSource"></property>
+<!--        设置类型别名-->
+        <property name="typeAliasesPackage" value="com.atguigu.ssm.pojo"></property>
+<!--        配置映射文件：
+                1）当配置了MapperScannerConfigurer 这个bean时,映射文件所在的包和映射接口的包名一致可以不配置
+                2）若没有配置，则不管映射文件所在的包和映射接口的包名是否一致，都需要配置-->
+<!--        <property name="mapperLocations" value="classpath:mappers/*.xml"></property>-->
+    </bean>
+
+<!--    配置mapper接口的扫描，可以将指定包下的所有mapper接口，通过sqlSession来创建代理实现类对象
+        并将这些对象交给IOC容器管理-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.atguigu.ssm.mapper"></property>
+    </bean>
+</beans>
